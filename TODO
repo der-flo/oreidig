@@ -1,3 +1,4 @@
+* doc/rake task: mongod --dbpath db
 * favicon
 * 404.html, 422.html, 500.html
 * setup ActionMailer, ExceptionNotification etc.
