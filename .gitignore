@@ -1,5 +1,8 @@
 .bundle
-db/*.sqlite3
+.sass-cache/
+config/delicious.yml
+db/oreidig_development*
+db/mongod.lock
 log/*.log
 tmp/
-.sass-cache/
+NOTES

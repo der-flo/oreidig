@@ -1,7 +1,8 @@
 development:
   host: localhost
   database: oreidig_development
-
+  allow_dynamic_fields: false
+  
 test:
   host: localhost
   database: oreidig_test
