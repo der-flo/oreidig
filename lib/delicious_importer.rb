@@ -29,7 +29,7 @@ module DeliciousImporter
       b.title = post['description']
       b.url = post['href']
       b.notes = post['extended']
-      b.tags = tags
+      b.tags_array = tags
       b.created_at = Time.parse(post['time'])
       b.updated_at = Time.parse(post['time'])
     end

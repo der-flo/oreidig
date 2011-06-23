@@ -1,7 +1,7 @@
 .bookmark
   %p.title= link_to @bookmark.title, @bookmark.url
   %p.notes= @bookmark.notes
-  %p.tags= @bookmark.tag_string
+  %p.tags= @bookmark.tags
   %p.controls
     = link_to 'edit', [:edit, @bookmark]
     |
