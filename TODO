@@ -1,6 +1,6 @@
-
+* favicon
+* 404.html, 422.html, 500.html
 * setup ActionMailer, ExceptionNotification etc.
 * full-text search
 ** http://www.papodenerd.net/mongoid-search-full-text-search-for-your-mongoid-models/
 ** http://www.mongodb.org/display/DOCS/Full+Text+Search+in+Mongo
-
