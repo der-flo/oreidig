@@ -5,3 +5,15 @@
 * full-text search
 ** http://www.papodenerd.net/mongoid-search-full-text-search-for-your-mongoid-models/
 ** http://www.mongodb.org/display/DOCS/Full+Text+Search+in+Mongo
+** ElasticSearch?
+
+Features
+* Bookmark: favicon
+* Bookmarklet
+* Authentication (but single-user)
+* Completely private
+* Homepage
+** Favourites
+** Groups of links = tags
+*** Relevant links by usage (clicks)
+**** consider weighted history

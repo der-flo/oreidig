@@ -1,0 +1,12 @@
+- @bookmarks.each do |bookmark|
+  .bookmark
+    %p.title= link_to bookmark.title, bookmark.url
+    %p.notes= bookmark.notes
+    %p.tags= bookmark.tag_string
+    %p.controls
+      = link_to 'show', bookmark
+      |
+      = link_to 'edit', [:edit, bookmark]
+      |
+      = link_to 'delete', bookmark, method: :delete, confirm: 'sure?'
+%p= link_to 'New bookmark', new_bookmark_path

@@ -1,0 +1,15 @@
+-# TODO: Error messages
+
+= form_for @bookmark do |form|
+  %p
+    = form.label :title
+    = form.text_field :title
+  %p
+    = form.label :url
+    = form.text_field :url
+  %p
+    = form.label :tag_string
+    = form.text_field :tag_string
+  %p
+    = form.submit 'OK'
+    = link_to 'cancel', @bookmark
