@@ -2,6 +2,7 @@
 * favicon
 * 404.html, 422.html, 500.html
 * setup ActionMailer, ExceptionNotification etc.
+* remove empty scss/coffee files
 
 Features
 * Flo: Create README

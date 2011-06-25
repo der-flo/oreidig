@@ -1,6 +1,11 @@
 Oreidig::Application.routes.draw do
   resources :bookmarks
 
+  match 'bookmarklets' => 'pages#bookmarklets'
+
+  # TODO
+  match 'save_bookmark' => 'pages#dummy'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

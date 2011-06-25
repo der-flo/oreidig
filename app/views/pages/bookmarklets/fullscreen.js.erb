@@ -1,0 +1,14 @@
+(
+  function(){
+    location.href='<%= save_bookmark_url %>' +
+                  '?url='    + encodeURIComponent(window.location.href) +
+                  '&title=' + encodeURIComponent(document.title) +
+                  '&notes=' + encodeURIComponent(''+
+                                (window.getSelection ? 
+                                  window.getSelection():
+                                  document.getSelection ? 
+                                    document.getSelection():
+                                    document.selection.createRange().text)
+                              )
+  }
+)()
