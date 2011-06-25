@@ -4,6 +4,7 @@
 * setup ActionMailer, ExceptionNotification etc.
 
 Features
+* Flo: Create README
 * Flo: Bookmark: favicon
 * Flo: Bookmarklet
 * Flo: Authentication (but single-user)
