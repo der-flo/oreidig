@@ -25,4 +25,5 @@ end
 
 group :development do
   gem 'capistrano'
+  gem 'redcarpet' # For markdown files
 end
