@@ -1,0 +1,20 @@
+.content-primary
+  %ul{:data => {:role => :listview, :inset => "true", "split-icon" => :gear, 
+                "split-theme" => :d}}
+    %li{:data => {:role => "list-divider"}} Hottest bookmarks
+    %li
+      %a{:href => "http://www.google.de"}
+        %h3 Google.de
+        %p That's Google, yeah
+      %a{:href => "edit"} Bearbeiten
+        
+
+  %h2 Oreidig
+
+.content-secondary
+  %div{:data => {:role => "collapsible", :collapsed => "true", :theme => "b"}}
+    %h3 More in this section
+    %ul{:data => {:role  => "listview", :theme => "c", :dividertheme => "d"}}
+      %li
+        - haml_tag :a, :href => "suche.html" do
+          - haml_concat "Suche"

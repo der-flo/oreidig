@@ -9,7 +9,7 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
-gem 'haml'
+gem 'haml', '>=2'
 gem "mongoid", "~> 2.0.2"
 gem "bson_ext", "~> 1.3"
 gem 'mongoid_search'
