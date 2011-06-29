@@ -15,7 +15,7 @@ module JqueryMobileHelper
 
   def listview data, &block
     data[:role] = :listview
-    jqm_tag :ul, data, attr, block
+    jqm_tag :ul, data, {} , block
   end
 
   def jqm_tag tag, data_attrs, attrs = {}

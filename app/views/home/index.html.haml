@@ -1,12 +1,11 @@
 .content-primary
-  - listview :inset => true, "split-icon" => :gear, "split-theme" => :d do
+  %ul{:data => {:role => :listview,  :inset => true, 
+      "split-icon" => :gear, "split-theme" => :d}}
     %li{:data => {:role => "list-divider"}} Hottest bookmarks
-    %li
-      %a{:href => "http://www.google.de"}
-        %h3 Google.de
-        %p That's Google, yeah
-      %a{:href => "edit"} Bearbeiten
-        
+
+    - Bookmark.all.each do |bookmark|
+      = render :partial => "bookmarks/item", :locals => {:bookmark => bookmark}
+
 
   %h2 Oreidig
 
