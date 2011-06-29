@@ -1,19 +1,19 @@
 -# TODO: Error messages
-.primary_content
-  
-  = form_for @bookmark do |form|
-    %p
-      = form.label :title
-      = form.text_field :title
-    %p
-      = form.label :url
-      = form.text_field :url
-    %p
-      = form.label :tags
-      = form.text_field :tags
-    %p
-      = form.label :notes
-      = form.text_area :notes
-    %p
-      = form.submit 'OK'
-      = link_to 'cancel', @bookmark
+-# TODO: Single Page
+
+= form_for @bookmark do |form|
+  %p
+    = form.label :title
+    = form.text_field :title
+  %p
+    = form.label :url
+    = form.text_field :url
+  %p
+    = form.label :tags
+    = form.text_field :tags
+  %p
+    = form.label :notes
+    = form.text_area :notes
+  %p
+    = form.submit 'OK'
+    = link_to 'cancel', @bookmark

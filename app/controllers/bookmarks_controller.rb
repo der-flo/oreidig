@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_filter :load_bookmark, :except => :index
+
   def index
     @bookmarks = Bookmark.all
   end

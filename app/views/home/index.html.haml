@@ -1,6 +1,5 @@
 .content-primary
-  %ul{:data => {:role => :listview, :inset => "true", "split-icon" => :gear, 
-                "split-theme" => :d}}
+  - listview :inset => true, "split-icon" => :gear, "split-theme" => :d do
     %li{:data => {:role => "list-divider"}} Hottest bookmarks
     %li
       %a{:href => "http://www.google.de"}

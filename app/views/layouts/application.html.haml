@@ -17,7 +17,7 @@
     = csrf_meta_tags
 
   %body
-    .type-interior{:data => {:role => "page"}}
+    %div{:class => page_type, :data => {:role => "page"}}
       %div{"data-role" => "header", "data-theme" => "b"}
         %h1 Oreidig
         %a.jqm-home{:data => {:direction => "reverse", :icon => "home", 

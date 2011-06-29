@@ -25,4 +25,8 @@ Oreidig::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+  #Reload plugins
+  config.reload_plugins = true
+
 end
