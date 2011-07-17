@@ -9,7 +9,10 @@ class Bookmark
   field :title, type: String
   field :url, type: String
   field :notes, type: String
-  field :tags, type: Array
+  field :url_infos, type: Hash
+  
+  # TODO: Private?
+  field :favicon_fetched, type: Boolean
 
   # Validations
   validates :notes, length: { maximum: 5_000 }
@@ -26,7 +29,16 @@ class Bookmark
     url = "http://#{url}" unless url =~ /^([a-z]+):\/\//
     write_attribute :url, url
   end
-
+  
+  # TODO: Save title, keywords, description and favicon
+  def fetch_url_infos
+    # TODO: Do not save all data
+    self.url_infos = UrlInfoExtractor.new(url).run
+    dest_filename = Rails.root.join('public', 'favicon_store', "#{id}.ico")
+    FileUtils.cp(url_infos[:favicon_filename], dest_filename)
+    FileUtils.rm(url_infos[:favicon_filename])
+  end
+  
 end
 
 # Examples:

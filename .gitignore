@@ -6,3 +6,5 @@ db/mongod.lock
 log/*.log
 tmp/
 NOTES
+public/favicon_store/*
+!.gitkeep

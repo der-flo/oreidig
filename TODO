@@ -4,13 +4,13 @@
 * remove empty scss/coffee files
 
 Features
-* Flo: Bookmark: favicon
+* Flo: Bookmark: favicon (20%)
 * Flo: Bookmarklet (40%)
 * Create README (10%)
 * Authentication (but single-user)
 ** OpenID, Google, Password, .. (OmniAuth?)
 ** Discuss! Requirements?
-* Completely private
+* Completely private?
 * Homepage
 ** Favourites
 ** Groups of links = tags

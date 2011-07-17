@@ -15,6 +15,8 @@ gem "bson_ext", "~> 1.3"
 gem 'mongoid_search'
 gem 'mongoid_taggable'
 
+gem 'nokogiri'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
