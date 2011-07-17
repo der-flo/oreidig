@@ -12,7 +12,7 @@ class Bookmark
   field :url_infos, type: Hash
   
   # TODO: Private?
-  field :favicon_fetched, type: Boolean
+  # field :favicon_fetched, type: Boolean
 
   # Validations
   validates :notes, length: { maximum: 5_000 }
@@ -23,6 +23,9 @@ class Bookmark
 
   # Configuration of full-text search
   search_in :title, :url, :notes, :tags_array
+  
+  # Callbacks
+  after_save :create_tag_objects
   
   # Prefix URL with "http://" if no protocol specified
   def url= url
@@ -37,6 +40,14 @@ class Bookmark
     dest_filename = Rails.root.join('public', 'favicon_store', "#{id}.ico")
     FileUtils.cp(url_infos[:favicon_filename], dest_filename)
     FileUtils.rm(url_infos[:favicon_filename])
+  end
+  
+  private
+  
+  def create_tag_objects
+    tags_array.each do |tag|
+      Tag.find_or_create_by name: tag
+    end
   end
   
 end
