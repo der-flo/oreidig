@@ -10,6 +10,8 @@ class Bookmark
   field :url, type: String
   field :notes, type: String
   field :url_infos, type: Hash
+  field :clicks, type: Array, default: []
+  field :rating, type: Integer
   
   # TODO: Private?
   # field :favicon_fetched, type: Boolean
@@ -25,7 +27,7 @@ class Bookmark
   search_in :title, :url, :notes, :tags_array
   
   # Callbacks
-  after_save :create_tag_objects
+  after_save :create_tag_objects, :if => :tags_array_changed?
   
   # Prefix URL with "http://" if no protocol specified
   def url= url
@@ -33,7 +35,7 @@ class Bookmark
     write_attribute :url, url
   end
   
-  # TODO: Save title, keywords, description and favicon
+  # Save title, keywords, description and favicon
   def fetch_url_infos
     # TODO: Do not save all data
     self.url_infos = UrlInfoExtractor.new(url).run
@@ -42,12 +44,38 @@ class Bookmark
     FileUtils.rm(url_infos[:favicon_filename])
   end
   
+  def click!
+    clicks << Time.now
+    recalc_rating
+    save
+  end
+
   private
+  
+  def recalc_rating
+    # Simple rating algorithm
+    # TODO: Test
+    self.rating = clicks.inject(0) do |sum, time|
+      case time.utc.to_i
+      when gen_time_range(-1.day, 0.seconds) then 100
+      when gen_time_range(-1.week, -1.day) then 10
+      when gen_time_range(-1.month, -1.week) then 2
+      else 1
+      end + sum
+    end
+    # TODO: Remove old and irrelevant click entries
+  end
   
   def create_tag_objects
     tags_array.each do |tag|
       Tag.find_or_create_by name: tag
     end
+  end
+  
+  def gen_time_range t1, t2
+    r = (Time.now.utc + t1).to_i..(Time.now.utc + t2).to_i
+    puts r
+    r
   end
   
 end
