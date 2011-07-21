@@ -17,7 +17,7 @@ module DeliciousImporter
   def self.fetch_data
     conf = YAML.load(File.read(Rails.root.join('config', 'delicious.yml')))
     
-    open('https://api.del.icio.us/v1/posts/all?results=10',
+    open('https://api.del.icio.us/v1/posts/all', #'?results=10',
          http_basic_authentication: [conf['username'], conf['password']],
          'User-Agent' => 'oreidig-importer',
          ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read

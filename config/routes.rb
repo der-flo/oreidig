@@ -1,5 +1,8 @@
 Oreidig::Application.routes.draw do
-  resources :bookmarks
+  resources :bookmarks do
+    # TODO: POST?
+    get 'click', on: :member
+  end
 
   match 'bookmarklets' => 'pages#bookmarklets'
 

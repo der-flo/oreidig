@@ -2,6 +2,7 @@ development:
   host: localhost
   database: oreidig_development
   allow_dynamic_fields: false
+  autocreate_indexes: true
   
 test:
   host: localhost

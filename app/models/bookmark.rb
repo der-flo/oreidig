@@ -13,6 +13,7 @@ class Bookmark
   field :clicks, type: Array, default: []
   field :rating, type: Integer
   
+  scope :rating_ordered, order_by(:rating, :desc)
   # TODO: Private?
   # field :favicon_fetched, type: Boolean
 
@@ -27,7 +28,7 @@ class Bookmark
   search_in :title, :url, :notes, :tags_array
   
   # Callbacks
-  after_save :create_tag_objects, :if => :tags_array_changed?
+  before_save :create_tag_objects, :if => :tags_array_changed?
   
   # Prefix URL with "http://" if no protocol specified
   def url= url
@@ -73,9 +74,7 @@ class Bookmark
   end
   
   def gen_time_range t1, t2
-    r = (Time.now.utc + t1).to_i..(Time.now.utc + t2).to_i
-    puts r
-    r
+    (Time.now.utc + t1).to_i..(Time.now.utc + t2).to_i
   end
   
 end

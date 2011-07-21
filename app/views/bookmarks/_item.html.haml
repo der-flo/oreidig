@@ -1,5 +1,7 @@
+-# TODO: Rename to "_bookmark" in order to shorten partial calls?
 %li
-  %a{:href => bookmark.url} 
+  -# TODO: External link
+  %a{:href => click_bookmark_path(bookmark)} 
     %h3=bookmark.title
     %p=bookmark.notes
   %a{:href => edit_bookmark_path(bookmark)} Bearbeiten

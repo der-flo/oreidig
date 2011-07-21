@@ -13,6 +13,7 @@ Features
 * Completely private?
 * Homepage
 ** Favourites
-** Groups of links = tags
-*** Relevant links by usage (clicks)
-**** consider weighted history
+** Special tag: "favourite"
+** Flo: Groups of links = tags (50%)
+*** Flo: Relevant links by usage (clicks)
+**** Flo: Consider weighted history

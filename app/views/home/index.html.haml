@@ -1,13 +1,18 @@
 .content-primary
+  %h2 Oreidig
+
   %ul{:data => {:role => :listview,  :inset => true, 
       "split-icon" => :gear, "split-theme" => :d}}
     %li{:data => {:role => "list-divider"}} Hottest bookmarks
-
-    - Bookmark.all.each do |bookmark|
+    
+    - Bookmark.limit(10).each do |bookmark|
       = render :partial => "bookmarks/item", :locals => {:bookmark => bookmark}
 
-
-  %h2 Oreidig
+    - @startpage_groups.each do |group_tag|
+      %li{:data => {:role => "list-divider"}}= group_tag.name
+      - group_tag.top_ten_bookmarks.each do |bookmark|
+        = render :partial => "bookmarks/item",
+                 :locals => {:bookmark => bookmark}
 
 .content-secondary
   %div{:data => {:role => "collapsible", :collapsed => "true", :theme => "b"}}

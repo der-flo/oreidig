@@ -30,6 +30,11 @@ class BookmarksController < ApplicationController
     @bookmark.destroy
     redirect_to Bookmark
   end
+  
+  def click
+    @bookmark.click!
+    redirect_to @bookmark.url
+  end
 
   private
   
