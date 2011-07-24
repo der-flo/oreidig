@@ -10,7 +10,7 @@
 
     - @startpage_groups.each do |group_tag|
       %li{:data => {:role => "list-divider"}}= group_tag.name
-      - group_tag.top_ten_bookmarks.each do |bookmark|
+      - group_tag.top_bookmarks.each do |bookmark|
         = render :partial => "bookmarks/item",
                  :locals => {:bookmark => bookmark}
 

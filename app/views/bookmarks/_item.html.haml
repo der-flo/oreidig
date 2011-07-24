@@ -4,4 +4,7 @@
   %a{:href => click_bookmark_path(bookmark)} 
     %h3=bookmark.title
     %p=bookmark.notes
+    %p
+      Rating:
+      = bookmark.rating
   %a{:href => edit_bookmark_path(bookmark)} Bearbeiten

@@ -9,13 +9,11 @@ class Bookmark
   field :title, type: String
   field :url, type: String
   field :notes, type: String
-  field :url_infos, type: Hash
+  field :url_infos, type: Hash # TODO: private field?
   field :clicks, type: Array, default: []
-  field :rating, type: Integer
+  field :rating, type: Integer, default: 0
   
   scope :rating_ordered, order_by(:rating, :desc)
-  # TODO: Private?
-  # field :favicon_fetched, type: Boolean
 
   # Validations
   validates :notes, length: { maximum: 5_000 }
@@ -53,9 +51,9 @@ class Bookmark
 
   private
   
+  # TODO: Call daily for every bookmark
   def recalc_rating
     # Simple rating algorithm
-    # TODO: Test
     self.rating = clicks.inject(0) do |sum, time|
       case time.utc.to_i
       when gen_time_range(-1.day, 0.seconds) then 100
@@ -64,7 +62,11 @@ class Bookmark
       else 1
       end + sum
     end
-    # TODO: Remove old and irrelevant click entries
+    
+    # Remove old and irrelevant click entries
+    clicks.keep_if { |time| time.utc > Time.now.utc - 6.months }
+    
+    self.rating
   end
   
   def create_tag_objects
