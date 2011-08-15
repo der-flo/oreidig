@@ -1,11 +1,18 @@
 .content-primary
-  %h2 Oreidig
+  %h2 Oreidigar
 
-  %ul{:data => {:role => :listview,  :inset => true, 
+  = jqm_list_view do
+    huhu
+
+  %ul{:data => {:role => :listview,  :inset => true,
       "split-icon" => :gear, "split-theme" => :d}}
     %li{:data => {:role => "list-divider"}} Hottest bookmarks
-    
+
     - Bookmark.limit(10).each do |bookmark|
+
+  - bookmark_list_view do
+    - bookmark_list_divider "Hottest bookmarks"
+    - Bookmark.hottest.each do |bookmark|
       = render :partial => "bookmarks/item", :locals => {:bookmark => bookmark}
 
     - @startpage_groups.each do |group_tag|
@@ -21,3 +28,11 @@
       %li
         - haml_tag :a, :href => "suche.html" do
           - haml_concat "Suche"
+    - navigation_list_view do
+      - navigation_list_item do
+        = link_to "Hottest", hottest_bookmarks_path
+      - navigation_list_item do
+        = link_to "Most recent", most_recent_bookmarks_path
+      - navigation_list_item do
+        - haml_tag :a, :href => "search.html" do
+          - haml_concat "Search"

@@ -1,0 +1,11 @@
+-jqm_context :navigation do
+  %div{:data => {:role => "collapsible", :collapsed => "true", :theme => "b"}}
+    %h3 More in this section
+    - jqm :list_view do
+      - jqm :list_item do
+        = link_to "Hottest", hot_bookmarks_path
+      - jqm :list_item do
+        = link_to "Most recent", most_recent_bookmarks_path
+      - jqm :list_item do
+        - haml_tag :a, :href => "search.html" do
+          - haml_concat "Search"

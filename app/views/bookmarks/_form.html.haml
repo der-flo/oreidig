@@ -16,4 +16,5 @@
     = form.text_area :notes
   %p
     = form.submit 'OK'
-    = link_to 'cancel', @bookmark
+    - jqm :link_button, :href => @bookmark do
+      cancel

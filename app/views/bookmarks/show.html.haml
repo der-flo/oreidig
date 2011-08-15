@@ -1,10 +1,11 @@
-.bookmark
-  %p.title= link_to @bookmark.title, @bookmark.url
-  %p.notes= @bookmark.notes
-  %p.tags= @bookmark.tags
-  %p.controls
-    = link_to 'edit', [:edit, @bookmark]
-    |
-    = link_to 'delete', @bookmark, method: :delete, confirm: 'sure?'
-    |
-    = link_to 'All bookmarks', bookmarks_path
+.content-primary
+  .bookmark
+    %p.title= link_to @bookmark.title, @bookmark.url
+    %p.notes= @bookmark.notes
+    %p.tags= @bookmark.tags
+    %p.controls
+      = link_to 'edit', [:edit, @bookmark]
+      |
+      = link_to 'delete', @bookmark, method: :delete, confirm: 'sure?'
+      |
+      = link_to 'All bookmarks', bookmarks_path

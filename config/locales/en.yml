@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  caption_for_action:
+    bookmarks:
+      hot: "Hottest bookmarks"
+      most_recent: "Most recent bookmarks"

@@ -1,23 +1,29 @@
 !!! 5
 %html
   %head
+
     - jq_base_url = "http://code.jquery.com/"
+
     %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1",
             :name => "viewport"}
-    %title Oreidig!
-    %script{:src => jq_base_url + "jquery-1.6.1.js"}
-    %link{:href => jq_base_url + "mobile/1.0b1/jquery.mobile-1.0b1.min.css",
-          :rel => "stylesheet"}/
 
+    %title Oreidig!
+
+    = stylesheet_link_tag jq_base_url + "mobile/1.0b2/jquery.mobile-1.0b2.min.css"
     = stylesheet_link_tag "application"
-    = stylesheet_link_tag "http://jquerymobile.com/demos/1.0b1/docs/_assets/css/jqm-docs.css"
+    = stylesheet_link_tag File.join("http://jquerymobile.com/demos/1.0b2/", 
+                          "docs/_assets/css/jqm-docs.css")
+
+    = javascript_include_tag jq_base_url + "jquery-1.6.2.js"
+    = javascript_include_tag jq_base_url + "mobile/1.0b2/jquery.mobile-1.0b2.js"
     = javascript_include_tag "application"
-    %script{:src => jq_base_url + "mobile/1.0b1/jquery.mobile-1.0b1.js"}
+
     = csrf_meta_tags
 
   %body
     %div{:class => page_type, :data => {:role => "page"}}
+
       %div{"data-role" => "header", "data-theme" => "b"}
         %h1 Oreidig
         %a.jqm-home{:data => {:direction => "reverse", :icon => "home", 
@@ -25,7 +31,13 @@
           Home
         %a{:href => new_bookmark_path, :data => {:icon => "plus"}}
           Neuer Bookmark
+
       %div{"data-role" => "content", :class => "ui-body"}
-        = yield()
+        .content-primary
+          = yield
+        - if multipage?
+          .content-secondary
+            = render "navigation"
+
       .footer-docs{"data-role" => "footer", "data-theme" => "c"}
         %p © 2011 Florian Dütsch &amp; Sven Winkler

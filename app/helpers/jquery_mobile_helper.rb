@@ -13,16 +13,8 @@ module JqueryMobileHelper
     content_for :page_type
   end
 
-  def listview data, &block
-    data[:role] = :listview
-    jqm_tag :ul, data, {} , block
-  end
-
-  def jqm_tag tag, data_attrs, attrs = {}
-    attrs.merge!({:data => data_attrs})
-    haml_tag tag, attrs do
-      yield if block_given?
-    end
+  def multipage?
+    page_type == "type-interior"
   end
 
 end

@@ -1,6 +1,10 @@
 Oreidig::Application.routes.draw do
+
   resources :bookmarks do
-    # TODO: POST?
+    collection do
+      get :hot
+      get :most_recent
+    end
     get 'click', on: :member
   end
 
@@ -8,7 +12,7 @@ Oreidig::Application.routes.draw do
 
   # TODO
   match 'save_bookmark' => 'pages#dummy'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -58,7 +62,8 @@ Oreidig::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'bookmarks#hot'
+
 
   # See how all your routes lay out with "rake routes"
 
