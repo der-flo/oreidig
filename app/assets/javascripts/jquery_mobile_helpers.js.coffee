@@ -1,3 +1,5 @@
+# TODO Sven: Script throws errors
+
 # collapse page navs after use
 $( () -> 
   $('body').delegate('.content-secondary .ui-collapsible-content', 
