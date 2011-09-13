@@ -7,13 +7,13 @@ class BookmarksController < ApplicationController
   end
 
   def hot
-    @bookmarks = Bookmark.hot
+    @bookmarks = Bookmark.hottest
     render :index
   end
 
   # TODO Sven: "recent"?
   def most_recent
-    @bookmarks = Bookmark.most_recent
+    @bookmarks = Bookmark.recent
     render :index
   end
 

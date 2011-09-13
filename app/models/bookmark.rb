@@ -13,8 +13,6 @@ class Bookmark
   field :clicks, type: Array, default: []
   field :rating, type: Integer, default: 0
 
-  scope :rating_ordered, order_by(:rating, :desc)
-
   # Validations
   validates :notes, length: { maximum: 5_000 }
   validates :url, url: true, presence: true,
@@ -49,15 +47,12 @@ class Bookmark
     save
   end
 
-  # TODO Flo: Check this new method
-  def self.hot count = 20
-    # TODO Flo: Implement something to get the hottest links
-    all.rating_ordered.limit(count)
+  def self.hottest count = 20
+    order_by(:rating, :desc).limit(count)
   end
 
-  # TODO Flo: Check this new method
-  def self.most_recent count = 20
-    all.order_by(:created_at).limit(count)
+  def self.recent count = 20
+    order_by(:created_at).limit(count)
   end
 
   private
