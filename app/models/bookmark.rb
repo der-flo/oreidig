@@ -36,7 +36,7 @@ class Bookmark
 
   # Save title, keywords, description and favicon
   def fetch_url_infos
-    # TODO: Do not save all data
+    # TODO Flo: Do not save all data
     self.url_infos = UrlInfoExtractor.new(url).run
     dest_filename = Rails.root.join('public', 'favicon_store', "#{id}.ico")
     FileUtils.cp(url_infos[:favicon_filename], dest_filename)
@@ -49,9 +49,20 @@ class Bookmark
     save
   end
 
+  # TODO Flo: Check this new method
+  def self.hot count = 20
+    # TODO Flo: Implement something to get the hottest links
+    all.rating_ordered.limit(count)
+  end
+
+  # TODO Flo: Check this new method
+  def self.most_recent count = 20
+    all.order_by(:created_at).limit(count)
+  end
+
   private
 
-  # TODO: Call daily for every bookmark
+  # TODO Flo: Call daily for every bookmark
   def recalc_rating
     # Simple rating algorithm
     self.rating = clicks.inject(0) do |sum, time|
@@ -77,15 +88,6 @@ class Bookmark
 
   def gen_time_range t1, t2
     (Time.now.utc + t1).to_i..(Time.now.utc + t2).to_i
-  end
-
-  def self.hot count = 20
-    # TODO: Implement something, to get the hottest links
-    all.rating_ordered.limit(count)
-  end
-
-  def self.most_recent count = 20
-    all.order_by(:created_at).limit(count)
   end
 
 end

@@ -35,7 +35,8 @@
       %div{"data-role" => "content", :class => "ui-body"}
         .content-primary
           = yield
-        - if multipage?
+        -# TODO Sven: "navigation" missing
+        - if multipage? && false
           .content-secondary
             = render "navigation"
 

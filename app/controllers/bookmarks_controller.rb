@@ -1,18 +1,17 @@
 class BookmarksController < ApplicationController
-  before_filter :load_bookmark, :only => [:edit, :update, :destroy, :show]
-  before_filter :new_bookmark, :only => [:new, :create]
+  before_filter :fetch_bookmark,
+                only: [:new, :edit, :create, :update, :destroy, :show]
 
   def index
     @bookmarks = Bookmark.all
   end
-
-  public
 
   def hot
     @bookmarks = Bookmark.hot
     render :index
   end
 
+  # TODO Sven: "recent"?
   def most_recent
     @bookmarks = Bookmark.most_recent
     render :index
@@ -27,9 +26,11 @@ class BookmarksController < ApplicationController
   def create
     @bookmark.attributes = params[:bookmark]
     if @bookmark.save
+      # TODO Sven
       raise "saved"
       redirect_to @bookmark
     else
+      # TODO Sven
       raise "shit"
       render 'new'
     end
@@ -55,12 +56,8 @@ class BookmarksController < ApplicationController
 
   private
 
-  def load_bookmark
-    @bookmark = Bookmark.find params[:id]
-  end
-
-  def new_bookmark
-    @bookmark = Bookmark.new
+  def fetch_bookmark
+    @bookmark = params[:id] ? Bookmark.find(params[:id]) : Bookmark.new
   end
 
 end
