@@ -9,9 +9,10 @@ class Bookmark
   field :title, type: String
   field :url, type: String
   field :notes, type: String
-  field :url_infos, type: Hash # TODO: private field?
+  field :url_infos, type: Hash
   field :clicks, type: Array, default: []
   field :rating, type: Integer, default: 0
+  attr_accessible :title, :url, :notes
 
   # Validations
   validates :notes, length: { maximum: 5_000 }
