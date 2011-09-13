@@ -1,15 +1,11 @@
 module PagesHelper
   
   def popup_bookmarklet_js
-    # TODO: Simplify stuff with the new asset pipeline?
-    str = render template: 'pages/bookmarklets/popup.js.erb'
-    # TODO: Other minification options?
-    Uglifier.compile(str)
+    # http://blog.phusion.nl/2011/08/14/rendering-rails-3-1-assets-to-string/
+    # TODO: Compression enabled in production?
+    Oreidig::Application.assets.find_asset('bookmarklets/popup.js').body
   end
   def fullscreen_bookmarklet_js
-    # TODO: Simplify stuff with the new asset pipeline?
-    str = render template: 'pages/bookmarklets/fullscreen.js.erb'
-    # TODO: Other minification options?
-    Uglifier.compile(str)
+    Oreidig::Application.assets.find_asset('bookmarklets/fullscreen.js').body
   end
 end

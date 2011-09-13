@@ -8,6 +8,7 @@ gem 'mongoid_search'
 gem 'mongoid_taggable'
 gem 'nokogiri'
 gem 'haml'
+gem 'settingslogic'
 
 
 # Gems used only for assets and not required
