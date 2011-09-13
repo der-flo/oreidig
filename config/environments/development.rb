@@ -25,6 +25,7 @@ Oreidig::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  #config.assets.js_compressor  = :uglifier
 
   #Reload plugins
   config.reload_plugins = true
