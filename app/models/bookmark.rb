@@ -5,11 +5,12 @@ class Bookmark
   include Mongoid::Taggable
   include Mongoid::Search
 
+  embeds_one :url_infos, class_name: 'UrlInfos'
+  
   # MongoDB fields
   field :title, type: String
   field :url, type: String
   field :notes, type: String
-  field :url_infos, type: Hash
   field :clicks, type: Array, default: []
   field :rating, type: Integer, default: 0
   attr_accessible :title, :url, :notes
@@ -25,21 +26,14 @@ class Bookmark
   search_in :title, :url, :notes, :tags_array
 
   # Callbacks
+  after_initialize { |obj| obj.url_infos = UrlInfos.new }
   before_save :create_tag_objects, :if => :tags_array_changed?
 
   # Prefix URL with "http://" if no protocol specified
+  # Is this really necessary?
   def url= url
     url = "http://#{url}" unless url =~ /^([a-z]+):\/\//
     write_attribute :url, url
-  end
-
-  # Save title, keywords, description and favicon
-  def fetch_url_infos
-    # TODO Flo: Do not save all data
-    self.url_infos = UrlInfoExtractor.new(url).run
-    dest_filename = Rails.root.join('public', 'favicon_store', "#{id}.ico")
-    FileUtils.cp(url_infos[:favicon_filename], dest_filename)
-    FileUtils.rm(url_infos[:favicon_filename])
   end
 
   def click!

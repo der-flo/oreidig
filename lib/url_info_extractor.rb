@@ -1,12 +1,13 @@
+# TODO: Error handling all over the class
 class UrlInfoExtractor
   def initialize url
     @uri = URI.parse(url)
+    @path = @uri.path
+    @path = '/' if @path.empty?
   end
   
   # Note: You can unlink the favicon file after usage
   def run
-    # TODO: private etc.
-    
     # Only HTTP- or HTTPS-based URLs
     unless %w(http https).include?(@uri.scheme)
       # TODO: Return anything other?
@@ -15,8 +16,7 @@ class UrlInfoExtractor
     
     # Only process mime type "text/html"
     # TODO: More mime types?
-    mime_type = request_mime_type
-    unless mime_type == 'text/html'
+    unless do_http_request(@path, :head).content_type == 'text/html'
       return nil
     end
     
@@ -24,41 +24,14 @@ class UrlInfoExtractor
     favicon_url = calc_favicon_url data[:favicon], data[:base]
     filename = fetch_favicon favicon_url
     
-    data.merge favicon_filename: filename
+    data.merge favicon_tempfile_name: filename
   end
   
   private
-  
-  # TODO: Refactor duplication
 
-  def request_mime_type
-    # TODO: Error handling
-    path = @uri.path
-    path = '/' if path.empty?
-    request = Net::HTTP::Head.new(path)
-    response = Net::HTTP.start(@uri.host, @uri.port) do |http|
-      http.request request
-    end
-    response.content_type
-  end
-  
-  def full_get_request
-    # TODO: Error handling
-    path = @uri.path
-    path = '/' if path.empty?
-    request = Net::HTTP::Get.new(path)
-    response = Net::HTTP.start(@uri.host, @uri.port) do |http|
-      http.request request
-    end
-    response.body
-  end
-  
+  # Extract title, keywords, description, favicon, base
   def extract_html_data
-    body = full_get_request
-
-    # Extract title, keywords, description, favicon, base
-    # TODO: Error handling
-    doc = Nokogiri::HTML(body)
+    doc = Nokogiri::HTML(do_http_request(@path, :get).body)
     head = doc.css('html head')
     
     {
@@ -94,10 +67,10 @@ class UrlInfoExtractor
       uri.to_s
     end
   end
-  
+
   def fetch_favicon url
     file = fetch_url_into_file(url) if url.present?
-    
+
     file ||= begin
       # Try default URL
       uri = @uri.dup
@@ -105,22 +78,23 @@ class UrlInfoExtractor
       uri.path = 'favicon.ico'
       fetch_url_into_file uri.to_s
     end
-    
+
     file.path
   end
-  
+
   def fetch_url_into_file url
-    # TODO: Error handling
-    request = Net::HTTP::Get.new(url)
-    response = Net::HTTP.start(@uri.host, @uri.port) do |http|
+    Tempfile.new(['oreidig_favicon_', '.ico'], Rails.root.join('tmp')) do |f|
+      f.binmode
+      f.write(do_http_request(url, :get).body)
+      f.close
+    end
+  end
+
+  def do_http_request path, method
+    request = "Net::HTTP::#{method.to_s.camelize}".constantize.new(path)
+    Net::HTTP.start(@uri.host, @uri.port) do |http|
       http.request request
     end
-    
-    file = Tempfile.new(['oreidig_favicon', '.ico'],
-                        Rails.root.join('tmp'))
-    file.binmode
-    file.write(response.body)
-    file.close
-    file
   end
+
 end
