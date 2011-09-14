@@ -1,11 +1,10 @@
 * favicon
 * 404.html, 422.html, 500.html
 * setup ActionMailer, ExceptionNotification etc.
-* remove empty scss/coffee files
 
 Features
-* Flo: Bookmark: favicon (20%)
-* Flo: Bookmarklet (40%)
+* Flo: Bookmark: favicon (50%)
+* Flo: Bookmarklet (70%)
 * Create README (10%)
 * Authentication (but single-user)
 ** OpenID, Google, Password, .. (OmniAuth?)
@@ -15,5 +14,5 @@ Features
 ** Favourites
 ** Flo: Special tag: "favourite" (70%)
 ** Flo: Groups of links = tags (70%)
-*** Flo: Relevant links by usage (clicks)
-**** Flo: Consider weighted history
+*** Flo: Relevant links by usage (clicks) (70%)
+**** Flo: Consider weighted history (100%)
