@@ -10,13 +10,11 @@
 
     %title Oreidig!
 
-    = stylesheet_link_tag jq_base_url + "mobile/1.0b2/jquery.mobile-1.0b2.min.css"
+    = stylesheet_link_tag jq_base_url + "mobile/1.0rc2/jquery.mobile-1.0rc2.css"
     = stylesheet_link_tag "application"
-    = stylesheet_link_tag File.join("http://jquerymobile.com/demos/1.0b2/", 
-                          "docs/_assets/css/jqm-docs.css")
 
-    = javascript_include_tag jq_base_url + "jquery-1.6.2.js"
-    = javascript_include_tag jq_base_url + "mobile/1.0b2/jquery.mobile-1.0b2.js"
+    = javascript_include_tag jq_base_url + "jquery-1.6.4.js"
+    = javascript_include_tag jq_base_url + "mobile/1.0rc2/jquery.mobile-1.0rc2.js"
     = javascript_include_tag "application"
 
     = csrf_meta_tags
@@ -33,12 +31,7 @@
           Neuer Bookmark
 
       %div{"data-role" => "content", :class => "ui-body"}
-        .content-primary
-          = yield
-        -# TODO Sven: "navigation" missing
-        - if multipage? && false
-          .content-secondary
-            = render "navigation"
+        = yield
 
       .footer-docs{"data-role" => "footer", "data-theme" => "c"}
         %p © 2011 Florian Dütsch &amp; Sven Winkler

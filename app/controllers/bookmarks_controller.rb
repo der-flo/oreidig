@@ -1,63 +1,56 @@
 class BookmarksController < ApplicationController
-  before_filter :fetch_bookmark,
-                only: [:new, :edit, :create, :update, :destroy, :show]
+
+  # TODO Sven: CrudController daraus bauen
+  respond_to :json
+
+  before_filter :fetch_bookmark, only: [:update, :destroy]
+  before_filter :new_bookmark, only: [:create]
 
   def index
-    @bookmarks = Bookmark.all
+    respond_with Bookmark.all
   end
 
   def hot
-    @bookmarks = Bookmark.hottest
-    render :index
+    respond_with Bookmark.hot
   end
 
-  # TODO Sven: "recent"?
-  def most_recent
-    @bookmarks = Bookmark.recent
-    render :index
-  end
-
-  def new
-  end
-
-  def edit
+  def recent
+    respond_with Bookmark.recent
   end
 
   def create
-    @bookmark.attributes = params[:bookmark]
-    if @bookmark.save
-      # TODO Sven
-      raise "saved"
-      redirect_to @bookmark
+    bookmark = Bookmark.new params[:bookmark]
+    if bookmark.save
+      respond_with bookmark, status: :created, location: bookmark
     else
-      # TODO Sven
-      raise "shit"
-      render 'new'
+      respond_with bookmark.errors, status: :unprocessable_entity
     end
   end
 
   def update
     if @bookmark.update_attributes params[:bookmark]
-      redirect_to @bookmark
+      respond_with @bookmark
     else
-      render 'edit'
+      respond_with bookmark.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @bookmark.destroy
-    redirect_to Bookmark
-  end
-
-  def show
-    @bookmark.click!
-    redirect_to @bookmark.url
+    if @bookmark.destroy
+      respond_with @bookmark, status: :accepted
+    else
+      respond_with @bookmark, status: :not_found
+    end
   end
 
   private
 
   def fetch_bookmark
-    @bookmark = params[:id] ? Bookmark.find(params[:id]) : Bookmark.new
+    @bookmark = Bookmark.find params[:id]
+  end
+
+  def new_bookmark
+    @bookmark = Bookmark.new
   end
 
 end
