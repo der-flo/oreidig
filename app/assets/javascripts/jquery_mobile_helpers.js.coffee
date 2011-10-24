@@ -1,5 +1,3 @@
-# TODO Sven: Script throws errors
-
 # collapse page navs after use
 $( () -> 
   $('body').delegate('.content-secondary .ui-collapsible-content', 
@@ -8,17 +6,17 @@ $( () ->
   )
 )
 
-default_transition = () -> {
+default_transition = () -> 
   winwidth = $( window ).width()
   trans ="slide"
-  if( winwidth >= 1000 ){
+  if ( winwidth >= 1000 )
     trans = "none"
-  }
-  else if( winwidth >= 650 ){
+  
+  else if ( winwidth >= 650 )
     trans = "fade"
-  }
+  
   $.mobile.defaultPageTransition = trans
-}
+
 
 # set default documentation
 $( document ).bind( "mobileinit", setDefaultTransition )
