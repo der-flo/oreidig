@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '~>3.1.0'
 gem 'jquery-rails'
 gem "mongoid", "~> 2.2.0"
 gem "bson_ext", "~> 1.3"
@@ -9,6 +9,7 @@ gem 'mongoid_taggable'
 gem 'nokogiri'
 gem 'haml'
 gem 'settingslogic'
+gem 'inherited_resources'
 
 gem 'spine-rails'
 
