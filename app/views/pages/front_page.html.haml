@@ -1,0 +1,37 @@
+!!! 5
+%html
+  %head
+
+    - jq_base_url = "http://code.jquery.com/"
+
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1",
+            :name => "viewport"}
+
+    %title Oreidig!
+
+    = stylesheet_link_tag jq_base_url + "mobile/1.0rc3/jquery.mobile-1.0rc3.css"
+    = stylesheet_link_tag "application"
+
+    = javascript_include_tag jq_base_url + "jquery-1.6.4.js"
+    = javascript_include_tag jq_base_url + "mobile/1.0rc3/jquery.mobile-1.0rc3.js"
+    = javascript_include_tag "application"
+
+    = csrf_meta_tags
+
+  %body
+    %div{:data => {:role => "page"}}
+
+      %div{"data-role" => "header", "data-theme" => "b"}
+        %h1 Oreidig
+        %a{:data => {:direction => "reverse", :icon => "home", 
+                              :iconpos => "notext"}, :href => "/"}
+          Home
+        %a{:href => new_bookmark_path, :data => {:icon => "plus"}}
+          Neuer Bookmark
+
+      %div{"data-role" => "content", :class => "ui-body"}
+        = yield
+
+      .footer-docs{"data-role" => "footer", "data-theme" => "c"}
+        %p © 2011 Florian Dütsch &amp; Sven Winkler

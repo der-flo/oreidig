@@ -6,7 +6,7 @@ class Bookmark
   include Mongoid::Search
 
   embeds_one :url_infos, class_name: 'UrlInfos'
-  
+
   # MongoDB fields
   field :title, type: String
   field :url, type: String
@@ -26,7 +26,8 @@ class Bookmark
   search_in :title, :url, :notes, :tags_array
 
   # Callbacks
-  after_initialize { |obj| obj.url_infos = UrlInfos.new }
+  # Without "unless" this issues an mongodb-update after any initialize
+  after_initialize { |obj| obj.url_infos = UrlInfos.new unless obj.url_infos }
   before_save :create_tag_objects, :if => :tags_array_changed?
 
   # Prefix URL with "http://" if no protocol specified
@@ -52,6 +53,7 @@ class Bookmark
 
   private
 
+  # TODO Sven: Come up with a better not so hungry way
   # TODO Flo: Call daily for every bookmark
   def recalc_rating
     # Simple rating algorithm

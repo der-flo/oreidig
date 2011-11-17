@@ -10,6 +10,7 @@ gem 'nokogiri'
 gem 'haml'
 gem 'settingslogic'
 gem 'inherited_resources'
+gem 'kaminari'
 
 gem 'spine-rails'
 
@@ -22,11 +23,7 @@ group :assets do
   gem 'uglifier'
 end
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   # Pretty printed test output
@@ -34,6 +31,7 @@ group :test do
 end
 
 group :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'capistrano'
   gem 'redcarpet' # For markdown files
   gem 'haml-rails'

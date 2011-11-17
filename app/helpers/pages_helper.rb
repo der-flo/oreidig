@@ -1,5 +1,5 @@
 module PagesHelper
-  
+
   def popup_bookmarklet_js
     # http://blog.phusion.nl/2011/08/14/rendering-rails-3-1-assets-to-string/
     # TODO Flo: See comment in blog post - compression is not applied?

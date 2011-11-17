@@ -3,4 +3,6 @@ class PagesController < ApplicationController
   end
   def dummy
   end
+  def front_page
+  end
 end

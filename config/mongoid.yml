@@ -2,19 +2,19 @@ development:
   host: localhost
   database: oreidig_development
   allow_dynamic_fields: false
-  autocreate_indexes: true
+  autocreate_indexes: false
   
 test:
   host: localhost
   database: oreidig_test
 
 # set these environment variables on your prod server
-production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+# production:
+#   host: <%= ENV['MONGOID_HOST'] %>
+#   port: <%= ENV['MONGOID_PORT'] %>
+#   username: <%= ENV['MONGOID_USERNAME'] %>
+#   password: <%= ENV['MONGOID_PASSWORD'] %>
+#   database: <%= ENV['MONGOID_DATABASE'] %>
   # slaves:
   #   - host: slave1.local
   #     port: 27018
