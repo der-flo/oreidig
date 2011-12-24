@@ -3,6 +3,7 @@
 config/delicious.yml
 db/oreidig_development*
 db/mongod.lock
+db/journal
 log/*.log
 tmp/
 NOTES
