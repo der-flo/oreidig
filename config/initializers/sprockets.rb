@@ -8,6 +8,5 @@ end
 # prevent "warning: class variable access from toplevel"
 clz.class_variable_set '@@default_url_options', {
                          host: Settings.url_options.host,
-                         port: Settings.url_options.port,
-                         protocol: Settings.url_options.protocol
+                         port: Settings.url_options.port
                        }

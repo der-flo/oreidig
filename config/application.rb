@@ -44,6 +44,8 @@ module Oreidig
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # config.active_record.whitelist_attributes = true
+
     # Enable the asset pipeline
     config.assets.enabled = true
     

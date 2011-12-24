@@ -2,7 +2,6 @@ common: &common
   url_options:
     host: localhost
     port: 3000
-    protocol: http
 
 development:
   <<: *common
