@@ -117,7 +117,6 @@ GEM
       railties (~> 3.2.0.beta)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    settingslogic (2.0.6)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -147,5 +146,4 @@ DEPENDENCIES
   nokogiri
   rails (= 3.2.0.rc1)
   sass-rails (~> 3.2.0)
-  settingslogic
   uglifier (>= 1.0.3)

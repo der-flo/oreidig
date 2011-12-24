@@ -48,9 +48,13 @@ module Oreidig
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.url_options = ActiveSupport::OrderedOptions.new
+    config.url_options.host = 'localhost'
+    config.url_options.port = 3000
   end
 end
+
