@@ -9,9 +9,7 @@ gem 'mongoid_search'
 gem 'mongoid_taggable'
 gem 'nokogiri'
 
-# TODO: Needed?
-gem 'haml'
-
+gem 'haml-rails', '~> 0.3.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,9 +19,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-# TODO
+# For building JSON views
 # gem 'jbuilder'
-
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,7 +30,7 @@ end
 
 group :development do
   gem 'capistrano'
-# TODO
+# TODO Sven: Needed? For README.md?
 #  gem 'redcarpet' # For markdown files
-#  gem 'haml-rails'
 end
+
