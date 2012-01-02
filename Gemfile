@@ -11,6 +11,8 @@ gem 'nokogiri'
 
 gem 'haml-rails', '~> 0.3.4'
 
+gem 'url_info_extractor', path: '../url_info_extractor'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -32,5 +34,12 @@ group :development do
   gem 'capistrano'
 # TODO Sven: Needed? For README.md?
 #  gem 'redcarpet' # For markdown files
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.7'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
+  gem 'growl'
 end
 

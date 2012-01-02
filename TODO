@@ -1,11 +1,13 @@
 * favicon
 * 404.html, 422.html, 500.html
 * setup ActionMailer, ExceptionNotification etc.
+* Sven: JQM-stuff makes problems in test environment (e.g. "rake spec")
 
 Features
 * Flo: Bookmark: favicon (50%)
 * Flo: Bookmarklet (70%)
 * Create README (10%)
+* Run on heroku free plan
 * Authentication (but single-user)
 ** OpenID, Google, Password, .. (OmniAuth?)
 ** Discuss! Requirements?

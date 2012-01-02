@@ -4,43 +4,26 @@ class UrlInfos
   
   # MongoDB fields
   field :title, type: String
-  field :keywords, type: String
   field :description, type: String
   field :fetched, type: Boolean, default: false
-  field :has_favicon, type: Boolean
-  
-  # Callbacks
-  after_destroy :delete_favicon
+  field :favicon_url, type: String
+
+  def has_favicon?
+    favicon_url.present?
+  end
 
   # Fetch title, keywords, description and favicon
   def fetch
     # TODO Flo: Async etc.?
-    data = UrlInfoExtractor.new(bookmark.url).run
+    infos = UrlInfoExtractor.new(bookmark.url)
     self.fetched = true
-    
-    if data
-      self.title = data[:title]
-      self.keywords = data[:keywords]
-      self.description = data[:description]
 
-      if fn = data[:favicon_tempfile_name]
-        FileUtils.cp(fn, favicon_path)
-        FileUtils.rm(fn)
-        self.has_favicon = true
-      end
-    end
-    
+    self.title = infos.title
+    self.description = infos.description
+    self.favicon_url = infos.favicon_url
+    # TODO Flo: Check existance of favicon?
+
     self
   end
-
-  private
-
-  def favicon_path
-    Rails.root.join('public', 'favicon_store', "#{id}.ico")
-  end
-  
-  def delete_favicon
-    FileUtils.rm favicon_path
-  end
-
 end
+
